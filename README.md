@@ -1,6 +1,6 @@
 # jquery.klavier
 
-A jQuery plugin to render a piano keyboard
+A jQuery plugin to render a piano keyboard.
 
 ## Getting Started
 
@@ -12,11 +12,12 @@ Download the [production version][min] or the [development version][max].
 In your web page:
 
 ```html
+<div id="container"></div>
 <script src="jquery.js"></script>
-<script src="dist/jquery.klavier.min.js"></script>
+<script src="jquery.klavier.js"></script>
 <script>
-jQuery(function($) {
-  $.awesome(); // "awesome"
+$(document).ready(function ($) {
+  $('#container').klavier();
 });
 </script>
 ```
