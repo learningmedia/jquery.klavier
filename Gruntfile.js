@@ -37,7 +37,7 @@ module.exports = function (grunt) {
       }
     },
     karma: {
-      options: {
+      continuous: {
         configFile: 'karma.conf.js',
         singleRun: true,
         browsers: ['PhantomJS']
@@ -70,11 +70,11 @@ module.exports = function (grunt) {
       },
       src: {
         files: '<%= jshint.src.src %>',
-        tasks: ['jshint:src', 'karma']
+        tasks: ['jshint:src', 'karma:continuous']
       },
       test: {
         files: '<%= jshint.test.src %>',
-        tasks: ['jshint:test', 'karma']
+        tasks: ['jshint:test', 'karma:continuous']
       }
     },
     connect: {
@@ -99,5 +99,5 @@ module.exports = function (grunt) {
   // Default task.
   grunt.registerTask('default', ['test', 'clean', 'concat', 'uglify']);
   grunt.registerTask('server', ['connect', 'watch']);
-  grunt.registerTask('test', ['jshint', 'karma']);
+  grunt.registerTask('test', ['jshint', 'karma:continuous']);
 };
