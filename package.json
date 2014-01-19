@@ -5,15 +5,15 @@
   "keywords": [
     "jquery-plugin"
   ],
-  "homepage": "https://github.com/ahelmberger/jquery.klavier",
+  "homepage": "https://github.com/learningmedia/jquery.klavier",
   "author": {
-    "name": "Andreas Helmberger",
-    "email": "public@ahelmberger.de",
-    "url": "https://github.com/ahelmberger"
+    "name": "Andreas Helmberger & Ulrich Kaiser",
+    "email": "webmaster@learning-media.de",
+    "url": "https://github.com/learningmedia"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ahelmberger/jquery.klavier.git"
+    "url": "https://github.com/learningmedia/jquery.klavier.git"
   },
   "licenses": [
     {

@@ -6,8 +6,8 @@ A jQuery plugin to render a piano keyboard.
 
 Download the [production version][min] or the [development version][max].
 
-[min]: https://raw.github.com/ahelmberger/jquery.klavier/master/dist/jquery.klavier.min.js
-[max]: https://raw.github.com/ahelmberger/jquery.klavier/master/dist/jquery.klavier.js
+[min]: https://raw.github.com/learningmedia/jquery.klavier/master/dist/jquery.klavier.min.js
+[max]: https://raw.github.com/learningmedia/jquery.klavier/master/dist/jquery.klavier.js
 
 In your web page:
 

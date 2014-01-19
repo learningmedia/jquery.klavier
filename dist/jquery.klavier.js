@@ -1,6 +1,6 @@
 /*! jquery.klavier - v0.9.0 - 2014-01-19
-* https://github.com/ahelmberger/jquery.klavier
-* Copyright (c) 2014 Andreas Helmberger; Licensed MIT */
+* https://github.com/learningmedia/jquery.klavier
+* Copyright (c) 2014 Andreas Helmberger & Ulrich Kaiser; Licensed MIT */
 (function ($, undefined) {
 
   var name = "klavier";
