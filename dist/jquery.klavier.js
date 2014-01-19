@@ -1,46 +1,45 @@
-/*! jquery.klavier - v0.9.0 - 2013-12-09
+/*! jquery.klavier - v0.9.0 - 2014-01-19
 * https://github.com/ahelmberger/jquery.klavier
-* Copyright (c) 2013 Andreas Helmberger; Licensed MIT */
-(function ($) {
+* Copyright (c) 2014 Andreas Helmberger; Licensed MIT */
+(function ($, undefined) {
 
-  function createKlavier($el, options) {
-    return {
-      el: $el,
-      options: options
-    };
-  }
+  var name = "klavier";
+
+  var Klavier = function (el, options) {
+    this.options = $.extend({}, Klavier.defaults, options);
+    this.$el = $(el);
+    this.$el.data(name, this);
+  };
+
+  Klavier.prototype.destroy = function () {
+    this.$el.removeData(name);
+    this.$el.off("." + name);
+    this.$el.empty();
+    this.$el = null;
+  };
+
+  Klavier.getOrCreate = function (el, options) {
+    return $(el).data(name) || new Klavier(el, options);
+  };
+
+  Klavier.defaults = {
+    // default options here...
+  };
 
   // Collection method.
-  $.fn.klavier = function () {
-    var args = $.makeArray(arguments);
-
-    if ((args.length !== 0) && (typeof args[0] === 'string')) {
-      var returnValues = [];
-      this.each(function () {        
-        var instance = $(this).data('__KLAVIER__');
-        if (!instance) {
-          throw new Error('No klavier instance found on the specified element.');
-        }
-        var func = instance[args[0]];
-        if (typeof func !== 'function') {
-          throw new Error('Function "' + args[0] + '" does not exist.');
-        }
-        returnValues.push(func.apply(instance, args.slice(1)));
-      });
-      return (returnValues.length !== 0) ? returnValues[0] : undefined;
+  $.fn.klavier = function (options) {
+    if (typeof options === "string") {
+      var values = this.map(function () {
+        var klavier = Klavier.getOrCreate(this);
+        return klavier[options].apply(klavier, Array.prototype.slice(arguments, 1));
+      }).get();
+      return values.length ? values[0] : undefined;
     }
-
     return this.each(function () {
-      var $el = $(this);
-      $el.data('__KLAVIER__', createKlavier($el, (args.length !== 0) ? args[0] : {}));
+      Klavier.getOrCreate(this, options);
     });
-
   };
 
-  // Default options.
-  $.klavier = {
-    options: {
-    }
-  };
+  $.fn.klavier.defaults = Klavier.defaults;
 
-}(jQuery));
+}) (jQuery);
