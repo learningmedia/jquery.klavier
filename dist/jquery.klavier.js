@@ -1,4 +1,4 @@
-/*! jquery.klavier - v0.9.0 - 2014-01-19
+/*! jquery.klavier - v0.9.0 - 2014-01-20
 * https://github.com/learningmedia/jquery.klavier
 * Copyright (c) 2014 Andreas Helmberger & Ulrich Kaiser; Licensed MIT */
 (function ($, undefined) {
@@ -28,10 +28,11 @@
 
   // Collection method.
   $.fn.klavier = function (options) {
+    var args = Array.prototype.slice(arguments, 1);
     if (typeof options === "string") {
       var values = this.map(function () {
         var klavier = Klavier.getOrCreate(this);
-        return klavier[options].apply(klavier, Array.prototype.slice(arguments, 1));
+        return klavier[options].apply(klavier, Array.prototype.slice(args));
       }).get();
       return values.length ? values[0] : undefined;
     }
@@ -41,5 +42,8 @@
   };
 
   $.fn.klavier.defaults = Klavier.defaults;
+
+  // For testing purposes we make the constructor public:
+  $.fn.klavier._constructor = Klavier;
 
 }) (jQuery);
