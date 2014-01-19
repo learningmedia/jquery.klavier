@@ -15,7 +15,7 @@
     });
 
     it("should be a function.", function () {
-      expect($.isFunction(Klavier)).toBe(true);
+      expect(Klavier).toEqual(jasmine.any(Function));
     });
 
     describe("TODO", function () {
