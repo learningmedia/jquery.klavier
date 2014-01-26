@@ -2,7 +2,7 @@
  * jquery.klavier
  * 
  *
- * Copyright (c) 2013 Andreas Helmberger
+ * Copyright (c) 2013 Andreas Helmberger & Ulrich Kaiser
  * Licensed under the MIT license.
  */
 
