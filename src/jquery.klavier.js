@@ -9,6 +9,7 @@
 (function ($, undefined) {
 
   var name = "klavier";
+  var blackKeyValues = [1, 3, 6, 8, 10];
 
   var Klavier = function (el, options) {
     this.options = $.extend({}, Klavier.defaults, options);
@@ -25,6 +26,11 @@
 
   Klavier.getOrCreate = function (el, options) {
     return $(el).data(name) || new Klavier(el, options);
+  };
+
+  Klavier.isBlackKey = function (midiValue) {
+    var normalized = midiValue % 12;
+    return blackKeyValues.indexOf(normalized)  !== -1;
   };
 
   Klavier.defaults = {
