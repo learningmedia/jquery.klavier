@@ -8,6 +8,9 @@
 
 (function ($, undefined) {
 
+  var MIN_KEY = 0;
+  var MAX_KEY = 120;
+
   var name = "klavier";
   var blackKeyValues = [1, 3, 6, 8, 10];
 
@@ -31,6 +34,21 @@
   Klavier.isBlackKey = function (midiValue) {
     var normalized = midiValue % 12;
     return blackKeyValues.indexOf(normalized)  !== -1;
+  };
+
+  Klavier.validateOptions = function (options) {
+    if (options.endKey <= options.startKey) {
+      throw new Error("The end key must be greater than the start key.");
+    }
+    if (options.startKey < MIN_KEY || options.endKey > MAX_KEY) {
+      throw new Error("The key values must be grater than or equal to " + MIN_KEY + " and less than or euqal to " + MAX_KEY + ".");
+    }
+    if (Klavier.isBlackKey(options.startKey)) {
+      throw new Error("The keyboard has to start with a white key.");
+    }
+    if (Klavier.isBlackKey(options.endKey)) {
+      throw new Error("The keyboard has to end with a white key.");
+    }
   };
 
   Klavier.defaults = {
