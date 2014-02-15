@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery.klavier examples</title>
+    <meta charset="utf-8">
+    <style>
+    #container {
+        margin: 120px auto;
+        width: 700px;
+        height: 220px;
+    }
+    .klavier-key {
+        border: 1px solid black;
+    }
+    .klavier-black-key {
+        background-color:  black;
+    }
+    .klavier-white-key {
+        background-color:  white;
+    }
+    </style>
+</head>
+<body>
+<div id="container"></div>
+<script src="bower_components/jquery/jquery.min.js"></script>
+<script src="dist/jquery.klavier.min.js"></script>
+<script>
+    $(function () {
+        $("#container").klavier({ startKey: 60, endKey: 83 });
+    });
+</script>
+</body>
+</html>

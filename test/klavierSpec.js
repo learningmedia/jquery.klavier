@@ -18,92 +18,52 @@
       expect(Klavier).toEqual(jasmine.any(Function));
     });
 
-    describe("isBlackKey", function () {
-      it("should be true for black keys", function () {
-        expect(Klavier.isBlackKey(1)).toBe(true);
-        expect(Klavier.isBlackKey(63)).toBe(true);
-        expect(Klavier.isBlackKey(70)).toBe(true);
-        expect(Klavier.isBlackKey(44)).toBe(true);
-        expect(Klavier.isBlackKey(42)).toBe(true);
+    describe("when a new instance with default options is created", function () {
+      beforeEach(function () {
+        container.klavier();
       });
 
-      it("should be false for white keys", function () {
-        expect(Klavier.isBlackKey(12)).toBe(false);
-        expect(Klavier.isBlackKey(2)).toBe(false);
-        expect(Klavier.isBlackKey(64)).toBe(false);
-        expect(Klavier.isBlackKey(65)).toBe(false);
-        expect(Klavier.isBlackKey(127)).toBe(false);
-        expect(Klavier.isBlackKey(129)).toBe(false);
-        expect(Klavier.isBlackKey(11)).toBe(false);
-      });
-    });
-
-    describe("validateOptions", function () {
-      it("should not throw an exception when options are valid.", function () {
-        var options = {
-          startKey: 60,
-          endKey: 64
-        };
-        expect(Klavier.validateOptions.bind(Klavier, options)).not.toThrow();
+      afterEach(function () {
+        container.klavier("destroy");
       });
 
-      it("should throw an exception when startKey is greater than endKey.", function () {
-        var options = {
-          startKey: 60,
-          endKey: 59
-        };
-        expect(Klavier.validateOptions.bind(Klavier, options))
-          .toThrow(new Error("The end key must be greater than the start key."));
+      it("should set the container to position=relative", function () {
+        expect(container.css("position")).toBe("relative");
       });
 
-      it("should throw an exception when startKey is equal to endKey.", function () {
-        var options = {
-          startKey: 60,
-          endKey: 60
-        };
-        expect(Klavier.validateOptions.bind(Klavier, options))
-          .toThrow(new Error("The end key must be greater than the start key."));
+      it("should set the 'klavier-container' class on the container", function () {
+        expect(container.hasClass("klavier-container")).toBe(true);
       });
 
-      it("should throw an exception when startKey is less than 0.", function () {
-        var options = {
-          startKey: -1,
-          endKey: 64
-        };
-        expect(Klavier.validateOptions.bind(Klavier, options))
-          .toThrow(new Error("The key values must be grater than or equal to 0 and less than or euqal to 120."));
+      it("should create 12 elements inside the container", function () {
+        var keyEements = container.children();
+        expect(keyEements.length).toBe(12);
       });
 
-      it("should throw an exception when endKey is greater than 120.", function () {
-        var options = {
-          startKey: 60,
-          endKey: 122
-        };
-        expect(Klavier.validateOptions.bind(Klavier, options))
-          .toThrow(new Error("The key values must be grater than or equal to 0 and less than or euqal to 120."));
+      it("should create 12 absolutley positioned elements inside the container", function () {
+        var keyEements = container.children();
+        keyEements.each(function (index, keyElement) {
+          expect($(keyElement).css("position")).toBe("absolute");
+        });
       });
 
-      it("should throw an exception when startKey is a black key.", function () {
-        var options = {
-          startKey: 61,
-          endKey: 64
-        };
-        expect(Klavier.validateOptions.bind(Klavier, options))
-          .toThrow(new Error("The keyboard has to start with a white key."));
+      it("should create 12 elements with class 'klavier-key' inside the container", function () {
+        var keyEements = container.children();
+        keyEements.each(function (index, keyElement) {
+          expect($(keyElement).hasClass("klavier-key")).toBe(true);
+        });
       });
 
-      it("should throw an exception when endKey is a black key.", function () {
-        var options = {
-          startKey: 60,
-          endKey: 63
-        };
-        expect(Klavier.validateOptions.bind(Klavier, options))
-          .toThrow(new Error("The keyboard has to end with a white key."));
+      it("should create 8 elements with class 'klavier-white-key' inside the container", function () {
+        var filteredElements = $(".klavier-white-key", container);
+        expect(filteredElements.length).toBe(7);
       });
-    });
 
-    describe("TODO", function () {
-      // TODO: Do tests with the Klavier function!
+      it("should create 5 elements with class 'klavier-black-key' inside the container", function () {
+        var filteredElements = $(".klavier-black-key", container);
+        expect(filteredElements.length).toBe(5);
+      });
+
     });
 
   });
