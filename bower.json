@@ -1,7 +1,9 @@
 {
   "name": "jquery.klavier",
   "version": "1.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "highlightjs": "~8.0.0"
+  },
   "devDependencies": {
     "jquery": "~2.0.0"
   }
