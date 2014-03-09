@@ -19,7 +19,8 @@
   var prepareContainer = function ($el, options) {
     $el
       .css("position", "relative")
-      .addClass(options.cssPrefix + "-container");
+      .addClass(options.cssPrefix + "-container")
+      .on("click." + name, "." + options.cssPrefix + "-key", onKeyClick);
   };
 
   var createKeys = function ($el, options) {
@@ -57,6 +58,33 @@
 
   var getValueFromKeyElement = function (el) {
     return parseInt($(el).data("value"), 10);
+  };
+
+  var onKeyClick = function (event) {
+    var klavier = Klavier.getOrCreate(event.delegateTarget);
+    var value = getValueFromKeyElement(event.target);
+    var selectedValues = klavier.getSelectedValues();
+    var index = selectedValues.indexOf(value);
+    switch(klavier.options.selectionMode) {
+      case "single":
+        if (index === -1) {
+          selectedValues = [value];
+        } else {
+          selectedValues = [];
+        }
+        break;
+      case "multiple":
+        if (index === -1) {
+          selectedValues.push(value);
+        } else {
+          selectedValues.splice(index, 1);
+        }
+        break;
+      default:
+        selectedValues = [];
+        break;
+    }
+    klavier.setSelectedValues(selectedValues);
   };
 
   var Klavier = function (el, options) {

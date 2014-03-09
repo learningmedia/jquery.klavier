@@ -50,8 +50,11 @@
     .klavier-white-key {
         background-color:  white;
     }
-    .klavier-selected-key {
-        background-color:  #D0D0D0;
+    .klavier-white-key.klavier-selected-key {
+        background-color:  #CCCCCC;
+    }
+    .klavier-black-key.klavier-selected-key {
+        background-color:  #333333;
     }
     </style>
 </head>
@@ -107,12 +110,11 @@
         $("#example-1 .piano").klavier();
         $("#example-2 .piano").klavier({ startKey: 60, endKey: 83 });
         $("#example-3 .piano").klavier({ startKey: 60, endKey: 83 }).klavier("setSelectedValues", [60, 64, 67]);
-        $("#example-4 .piano").klavier({ startKey: 60, endKey: 83 });
-
-
+        $("#example-4 .piano").klavier({ startKey: 60, endKey: 83, selectionMode: "none" });
 
         $("#example-4 input[name='selectionMode']").on("change", function () {
             var sm = $(this).val();
+            $("#example-4 .piano").klavier("destroy");
             $("#example-4 .piano").klavier({ startKey: 60, endKey: 83, selectionMode: sm });
             $("#example-4 .selectionModeDisplay").text(sm);
             hljs.highlightBlock($("#example-4 code").get(0));
