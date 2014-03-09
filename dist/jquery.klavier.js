@@ -50,6 +50,10 @@
     }
   };
 
+  var getValueFromKeyElement = function (el) {
+    return parseInt($(el).data("value"), 10);
+  };
+
   var Klavier = function (el, options) {
     this.options = $.extend({}, Klavier.defaults, options);
     this.$el = $(el);
@@ -64,6 +68,19 @@
     this.$el.off("." + name);
     this.$el.empty();
     this.$el = null;
+  };
+
+  Klavier.prototype.getSelectedValues = function () {
+    return this.$el.find("." + this.options.cssPrefix + "-selected-key").get().map(function (key) {
+      return getValueFromKeyElement(key);
+    });
+  };
+
+  Klavier.prototype.setSelectedValues = function (values) {
+    this.$el.find("." + this.options.cssPrefix + "-key").each(function (index, key) {
+      var isSelected = values.indexOf(getValueFromKeyElement(key)) !== -1;
+      $(key).toggleClass(this.options.cssPrefix + "-selected-key", isSelected);
+    }.bind(this));
   };
 
   Klavier.getOrCreate = function (el, options) {
@@ -104,18 +121,20 @@
   Klavier.defaults = {
     startKey: 60,
     endKey: 71,
+    selectionMode: "multiple",
     cssPrefix: "klavier",
     zIndex: 999
   };
 
   // Collection method.
   $.fn.klavier = function (options) {
-    var args = Array.prototype.slice(arguments, 1);
+    var args = Array.prototype.slice.call(arguments, 1);
     if (typeof options === "string") {
-      var values = this.map(function () {
-        var klavier = Klavier.getOrCreate(this);
-        return klavier[options].apply(klavier, Array.prototype.slice(args));
-      }).get();
+      var values = this.get().map(function (el) {
+        var klavier = Klavier.getOrCreate(el);
+        var v = klavier[options].apply(klavier, args);
+        return v;
+      });
       return values.length ? values[0] : undefined;
     }
     return this.each(function () {

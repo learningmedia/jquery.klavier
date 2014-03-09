@@ -50,6 +50,9 @@
     .klavier-white-key {
         background-color:  white;
     }
+    .klavier-selected-key {
+        background-color:  #D0D0D0;
+    }
     </style>
 </head>
 <body>
@@ -77,13 +80,22 @@
         <div class="piano key-14"></div>
     </div>
     <div class="right">
+        <p>Initialize a piano and set the selected key values:</p>
+        <pre><code class="language-js">$("#example-3 .piano").klavier({ startKey: 60, endKey: 83 }).klavier("setSelectedValues", [60, 64, 67]);</code></pre>
+    </div>
+</div>
+<div id="example-4" class="example">
+    <div class="left">
+        <div class="piano key-14"></div>
+    </div>
+    <div class="right">
         <p>
-            Selection mode:&nbsp;
+            Press keys in selection mode:&nbsp;
             <input type="radio" name="selectionMode" value="none" checked>&nbsp;none&nbsp;
             <input type="radio" name="selectionMode" value="single">&nbsp;single&nbsp;
             <input type="radio" name="selectionMode" value="multiple">&nbsp;multiple&nbsp;
         </p>
-        <pre><code class="language-js">$("#example-3 .piano").klavier({ startKey: 60, endKey: 83, selectionMode: "<span class="selectionModeDisplay">none</span>" });</code></pre>
+        <pre><code class="language-js">$("#example-4 .piano").klavier({ startKey: 60, endKey: 83, selectionMode: "<span class="selectionModeDisplay">none</span>" });</code></pre>
     </div>
 </div>
 <script src="bower_components/jquery/jquery.min.js"></script>
@@ -94,14 +106,16 @@
     $(function () {
         $("#example-1 .piano").klavier();
         $("#example-2 .piano").klavier({ startKey: 60, endKey: 83 });
-        $("#example-3 .piano").klavier({ startKey: 60, endKey: 83 });
+        $("#example-3 .piano").klavier({ startKey: 60, endKey: 83 }).klavier("setSelectedValues", [60, 64, 67]);
+        $("#example-4 .piano").klavier({ startKey: 60, endKey: 83 });
 
 
-        $("#example-3 input[name='selectionMode']").on("change", function () {
+
+        $("#example-4 input[name='selectionMode']").on("change", function () {
             var sm = $(this).val();
-            $("#example-3 .piano").klavier({ startKey: 60, endKey: 83, selectionMode: sm });
-            $("#example-3 .selectionModeDisplay").text(sm);
-            hljs.highlightBlock($("#example-3 code").get(0));
+            $("#example-4 .piano").klavier({ startKey: 60, endKey: 83, selectionMode: sm });
+            $("#example-4 .selectionModeDisplay").text(sm);
+            hljs.highlightBlock($("#example-4 code").get(0));
         });
     });
 </script>
