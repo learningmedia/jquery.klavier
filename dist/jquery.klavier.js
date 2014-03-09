@@ -1,4 +1,4 @@
-/*! jquery.klavier - v0.9.0 - 2014-02-16
+/*! jquery.klavier - v0.9.0 - 2014-03-09
 * https://github.com/learningmedia/jquery.klavier
 * Copyright (c) 2014 Andreas Helmberger & Ulrich Kaiser; Licensed MIT */
 (function ($, undefined) {
@@ -41,6 +41,7 @@
         })
         .addClass(options.cssPrefix + "-key")
         .addClass(options.cssPrefix + (isBlackKey ? "-black-key" : "-white-key"))
+        .attr("data-value", i)
         .appendTo($el);
 
       if (!isBlackKey) {

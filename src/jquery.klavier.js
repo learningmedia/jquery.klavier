@@ -46,6 +46,7 @@
         })
         .addClass(options.cssPrefix + "-key")
         .addClass(options.cssPrefix + (isBlackKey ? "-black-key" : "-white-key"))
+        .attr("data-value", i)
         .appendTo($el);
 
       if (!isBlackKey) {
@@ -108,6 +109,7 @@
   Klavier.defaults = {
     startKey: 60,
     endKey: 71,
+    selectionMode: "multiple",
     cssPrefix: "klavier",
     zIndex: 999
   };
