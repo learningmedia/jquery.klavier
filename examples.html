@@ -30,16 +30,19 @@
     }
     .left {
         min-width: 512px;
-        padding: 1em 0;
+        padding: 1.5em 0;
+    }
+    .right {
+        padding: 0.5em 0;        
     }
     .piano {
-        height: 160px;
+        height: 100px;
     }
     .piano.key-7 {
-        width: 240px;
+        width: 200px;
     }        
     .piano.key-14 {
-        width: 480px;
+        width: 400px;
     }
     .klavier-key {
         border: 1px solid black;
@@ -59,7 +62,7 @@
     </style>
 </head>
 <body>
-<h1>jQuery.Klavier</h1>
+<h1>jQuery.klavier examples</h1>
 <div id="example-1" class="example">
     <div class="left">
         <div class="piano key-7"></div>
@@ -83,8 +86,9 @@
         <div class="piano key-14"></div>
     </div>
     <div class="right">
-        <p>Initialize a piano and set the selected key values:</p>
-        <pre><code class="language-js">$("#example-3 .piano").klavier({ startKey: 60, endKey: 83 }).klavier("setSelectedValues", [60, 64, 67]);</code></pre>
+        <p>Initialize a piano and set/get the selected key values:</p>
+        <pre><code class="language-js">$("#example-3 .piano").klavier({ startKey: 60, endKey: 83 }).klavier("setSelectedValues", [60, 64, 67]);
+var values = $("#example-3 .piano").klavier("getSelectedValues"); // values === [60, 64, 67]</code></pre>
     </div>
 </div>
 <div id="example-4" class="example">
@@ -93,12 +97,27 @@
     </div>
     <div class="right">
         <p>
-            Press keys in selection mode:&nbsp;
-            <input type="radio" name="selectionMode" value="none" checked>&nbsp;none&nbsp;
+            Set different selection modes:&nbsp;
+            <input type="radio" name="selectionMode" value="none">&nbsp;none&nbsp;
             <input type="radio" name="selectionMode" value="single">&nbsp;single&nbsp;
-            <input type="radio" name="selectionMode" value="multiple">&nbsp;multiple&nbsp;
+            <input type="radio" name="selectionMode" value="multiple" checked>&nbsp;multiple&nbsp;(default)
         </p>
-        <pre><code class="language-js">$("#example-4 .piano").klavier({ startKey: 60, endKey: 83, selectionMode: "<span class="selectionModeDisplay">none</span>" });</code></pre>
+        <pre><code class="language-js">$("#example-4 .piano").klavier({ startKey: 60, endKey: 83, selectionMode: "<span class="selectionModeDisplay">multiple</span>" });</code></pre>
+    </div>
+</div>
+<div id="example-5" class="example">
+    <div class="left">
+        <div class="piano key-14"></div>
+    </div>
+    <div class="right">
+        <p>Use the 'onSelectedValuesChanged' callback to get informed about changes:</p>
+        <pre><code class="language-js">$("#example-5 .piano").klavier({
+    startKey: 60,
+    endKey: 83,
+    onSelectedValuesChanged: function (values) {
+        alert("[" + values + "]");
+    }
+});</code></pre>
     </div>
 </div>
 <script src="bower_components/jquery/jquery.min.js"></script>
@@ -110,7 +129,14 @@
         $("#example-1 .piano").klavier();
         $("#example-2 .piano").klavier({ startKey: 60, endKey: 83 });
         $("#example-3 .piano").klavier({ startKey: 60, endKey: 83 }).klavier("setSelectedValues", [60, 64, 67]);
-        $("#example-4 .piano").klavier({ startKey: 60, endKey: 83, selectionMode: "none" });
+        $("#example-4 .piano").klavier({ startKey: 60, endKey: 83, selectionMode: "multiple" });
+        $("#example-5 .piano").klavier({
+            startKey: 60,
+            endKey: 83,
+            onSelectedValuesChanged: function (values) {
+                alert("[" + values + "]");
+            }
+        });
 
         $("#example-4 input[name='selectionMode']").on("change", function () {
             var sm = $(this).val();

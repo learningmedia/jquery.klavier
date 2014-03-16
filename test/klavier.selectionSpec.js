@@ -143,4 +143,42 @@
 
   });
 
+  describe("When the selection changed", function () {
+    var onSelectedValuesChanged;
+
+    beforeEach(function () {
+      onSelectedValuesChanged = jasmine.createSpy();
+      container = $("<div></div>")
+        .css({ width: "210px", height: "80px" })
+        .appendTo(window.document.body)
+        .klavier({
+          selectionMode: "multiple",
+          onSelectedValuesChanged: onSelectedValuesChanged
+        });
+    });
+
+    afterEach(function () {
+      onSelectedValuesChanged = undefined;
+      container.klavier("destroy");
+      container.remove();
+      container = undefined;
+    });
+
+    describe("through setting new values", function () {
+      it("should invoke the 'onSelectedValuesChanged' function", function () {
+        container.klavier("setSelectedValues", [61, 62]);
+        expect(onSelectedValuesChanged).toHaveBeenCalledWith([61, 62]);
+      });
+    });
+
+    describe("through click events", function () {
+      it("should invoke the 'onSelectedValuesChanged' function", function () {
+        container.find("[data-value='61']").trigger("click");
+        container.find("[data-value='62']").trigger("click");
+        expect(onSelectedValuesChanged).toHaveBeenCalledWith([61]);
+        expect(onSelectedValuesChanged).toHaveBeenCalledWith([61, 62]);
+      });
+    });
+  });
+
 }) (jQuery);

@@ -114,6 +114,9 @@
       var isSelected = values.indexOf(getValueFromKeyElement(key)) !== -1;
       $(key).toggleClass(this.options.cssPrefix + "-selected-key", isSelected);
     }.bind(this));
+    if (typeof this.options.onSelectedValuesChanged === "function") {
+      this.options.onSelectedValuesChanged(this.getSelectedValues());
+    }
   };
 
   Klavier.getOrCreate = function (el, options) {

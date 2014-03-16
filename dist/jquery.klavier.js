@@ -1,4 +1,4 @@
-/*! jquery.klavier - v0.9.0 - 2014-03-10
+/*! jquery.klavier - v0.9.0 - 2014-03-16
 * https://github.com/learningmedia/jquery.klavier
 * Copyright (c) 2014 Andreas Helmberger & Ulrich Kaiser; Licensed MIT */
 (function ($, undefined) {
@@ -109,6 +109,9 @@
       var isSelected = values.indexOf(getValueFromKeyElement(key)) !== -1;
       $(key).toggleClass(this.options.cssPrefix + "-selected-key", isSelected);
     }.bind(this));
+    if (typeof this.options.onSelectedValuesChanged === "function") {
+      this.options.onSelectedValuesChanged(this.getSelectedValues());
+    }
   };
 
   Klavier.getOrCreate = function (el, options) {
