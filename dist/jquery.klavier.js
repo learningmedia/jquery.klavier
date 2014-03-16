@@ -1,4 +1,4 @@
-/*! jquery.klavier - v0.9.0 - 2014-03-16
+/*! jquery.klavier - v1.0.0 - 2014-03-16
 * https://github.com/learningmedia/jquery.klavier
 * Copyright (c) 2014 Andreas Helmberger & Ulrich Kaiser; Licensed MIT */
 (function ($, undefined) {

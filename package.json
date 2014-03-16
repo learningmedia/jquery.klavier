@@ -1,6 +1,6 @@
 {
   "name": "jquery.klavier",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "description": "A jQuery plugin to render a piano keyboard",
   "keywords": [
     "jquery-plugin"
