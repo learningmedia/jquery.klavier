@@ -14,6 +14,7 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'phantom-polyfill.js',
       'bower_components/jquery/jquery.js',
       'src/jquery.klavier.js',
       'test/**/*Spec.js'
