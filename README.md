@@ -107,5 +107,10 @@ Have a look at the file *examples.html*.
 
 _(Nothing yet)_
 
+---
+
+Copyright (c) 2014 Andreas Helmberger & Ulrich Kaiser
+Licensed under the MIT License (MIT)
+
 [min]: https://raw.github.com/learningmedia/jquery.klavier/master/dist/jquery.klavier.min.js
 [max]: https://raw.github.com/learningmedia/jquery.klavier/master/dist/jquery.klavier.js
