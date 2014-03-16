@@ -49,11 +49,15 @@ Copy the following styles into your web site's CSS:
 
 Instantiate a new keyboard by calling:
 
-    $('#container').klavier();
+```js
+$('#container').klavier();
+```
 
 You can also specify options:
 
-    $('#container').klavier({ startKey: 60, endKey: 83 });
+```js
+$('#container').klavier({ startKey: 60, endKey: 83 });
+```
 
 The following table lists all available options and their default values:
 
@@ -68,15 +72,24 @@ The following table lists all available options and their default values:
 
 You can set the selected keys providing an array of MIDI values:
 
-    $('#container').klavier('setSelectedValues', [60, 61]);
+
+```js
+$('#container').klavier('setSelectedValues', [60, 61]);
+```
 
 You can get the currently selected keys by calling:
 
-    var selectedKeys = $('#container').klavier('getSelectedValues');
+
+```js
+var selectedKeys = $('#container').klavier('getSelectedValues');
+```
 
 You can finally destroy the keyboard by calling:
 
-    var selectedKeys = $('#container').klavier('destroy');
+
+```js
+var selectedKeys = $('#container').klavier('destroy');
+```
 
 Please note, that all named calls to the `$.klavier` function are not chainable.
 
