@@ -23,8 +23,8 @@ Copy the following styles into your web site's CSS:
 
 ```CSS
 #container {
-    height: 100px;
-    width: 200px;
+    height: 200px;
+    width: 600px;
 }
 .klavier-key {
     border: 1px solid black;
