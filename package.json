@@ -21,7 +21,7 @@
     }
   ],
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt travis"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.1.1",
