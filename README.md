@@ -2,6 +2,8 @@
 
 A jQuery plugin to render a piano keyboard.
 
+[![Build Status](https://travis-ci.org/learningmedia/jquery.klavier.png)](https://travis-ci.org/learningmedia/jquery.klavier)
+
 ## Getting Started
 
 Download the [production version][min] or the [development version][max].
