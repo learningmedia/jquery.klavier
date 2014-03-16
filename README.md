@@ -10,8 +10,8 @@ In your web page:
 
 ```html
 <div id='container'></div>
-<script src='jquery.js'></script>
-<script src='jquery.klavier.js'></script>
+<script src='jquery.min.js'></script>
+<script src='jquery.klavier.min.js'></script>
 <script>
 $(document).ready(function ($) {
   $('#container').klavier();
@@ -22,7 +22,7 @@ $(document).ready(function ($) {
 Copy the following styles into your web site's CSS:
 
 ```CSS
-.container {
+#container {
     height: 100px;
     width: 200px;
 }
@@ -49,13 +49,13 @@ Copy the following styles into your web site's CSS:
 
 Instantiate a new keyboard by calling:
 
-```js
+```JS
 $('#container').klavier();
 ```
 
 You can also specify options:
 
-```js
+```JS
 $('#container').klavier({ startKey: 60, endKey: 83 });
 ```
 
@@ -73,21 +73,21 @@ The following table lists all available options and their default values:
 You can set the selected keys providing an array of MIDI values:
 
 
-```js
+```JS
 $('#container').klavier('setSelectedValues', [60, 61]);
 ```
 
 You can get the currently selected keys by calling:
 
 
-```js
+```JS
 var selectedKeys = $('#container').klavier('getSelectedValues');
 ```
 
 You can finally destroy the keyboard by calling:
 
 
-```js
+```JS
 var selectedKeys = $('#container').klavier('destroy');
 ```
 
