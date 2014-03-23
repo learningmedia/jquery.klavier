@@ -5,8 +5,16 @@
  * Copyright (c) 2013 Andreas Helmberger & Ulrich Kaiser
  * Licensed under the MIT license.
  */
-
-(function ($, undefined) {
+(function (root, factory) {
+  if (typeof exports === "object") {
+    var jquery = require("jquery");
+    factory(jquery);
+  } else if (typeof define === "function" && define.amd) {
+    define(["jquery"], factory);
+  } else {
+    factory(jQuery);
+  }
+}) (this, function ($) {
 
   var MIN_KEY = 0;
   var MAX_KEY = 120;
@@ -183,4 +191,4 @@
   // For testing purposes we make the constructor public:
   $.fn.klavier._constructor = Klavier;
 
-}) (jQuery);
+});
