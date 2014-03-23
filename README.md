@@ -107,7 +107,8 @@ Have a look at the file *examples.html*.
 
 ## Release History
 
-_(Nothing yet)_
+* **1.1.0** Support for CommonJS and AMD style module loading
+* **1.0** Initial release
 
 ---
 
