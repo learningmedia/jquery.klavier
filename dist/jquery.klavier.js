@@ -1,6 +1,6 @@
-/*! jquery.klavier - v1.1.0 - 2014-03-23
+/*! jquery.klavier - v1.1.1 - 2016-04-24
 * https://github.com/learningmedia/jquery.klavier
-* Copyright (c) 2014 Andreas Helmberger & Ulrich Kaiser; Licensed MIT */
+* Copyright (c) 2016 Andreas Helmberger & Ulrich Kaiser; Licensed MIT */
 (function (root, factory) {
   if (typeof exports === "object") {
     var jquery = require("jquery");
@@ -27,7 +27,7 @@
       .on("click." + name, "." + options.cssPrefix + "-key", onKeyClick);
   };
 
-  var createKeys = function ($el, options) {
+  function createKeys($el, options) {
     var whiteKeyCount = Klavier.getWhiteKeyCount(options.startKey, options.endKey);
     var whiteKeyWidth = $el.innerWidth() / whiteKeyCount;
     var blackKeyWidth = BLACK_KEY_WIDTH_FACTOR * whiteKeyWidth;
@@ -58,13 +58,13 @@
         currentPosition += whiteKeyWidth;
       }
     }
-  };
+  }
 
-  var getValueFromKeyElement = function (el) {
+  function getValueFromKeyElement(el) {
     return parseInt($(el).data("value"), 10);
-  };
+  }
 
-  var onKeyClick = function (event) {
+  function onKeyClick(event) {
     var klavier = Klavier.getOrCreate(event.delegateTarget);
     var value = getValueFromKeyElement(event.target);
     var selectedValues = klavier.getSelectedValues();
@@ -89,15 +89,15 @@
         break;
     }
     klavier.setSelectedValues(selectedValues);
-  };
+  }
 
-  var Klavier = function (el, options) {
+  function Klavier(el, options) {
     this.options = $.extend({}, Klavier.defaults, options);
     this.$el = $(el);
     this.$el.data(name, this);
     prepareContainer(this.$el, this.options);
     createKeys(this.$el, this.options);
-  };
+  }
 
   Klavier.prototype.destroy = function () {
     this.$el.removeData(name);

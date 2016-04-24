@@ -40,9 +40,9 @@ module.exports = function (grunt) {
       continuous: {
         configFile: 'karma.conf.js',
         singleRun: true,
-        browsers: ['Chrome', 'Firefox']
+        browsers: ['Chrome']
       },
-      travis: {
+      ci: {
         configFile: 'karma.conf.js',
         singleRun: true,
         browsers: ['PhantomJS']
@@ -105,5 +105,5 @@ module.exports = function (grunt) {
   grunt.registerTask('default', ['test', 'clean', 'concat', 'uglify']);
   grunt.registerTask('server', ['connect', 'watch']);
   grunt.registerTask('test', ['jshint', 'karma:continuous']);
-  grunt.registerTask('travis', ['jshint', 'karma:travis']);
+  grunt.registerTask('ci', ['jshint', 'karma:ci']);
 };
